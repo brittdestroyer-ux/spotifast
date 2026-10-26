@@ -1,0 +1,14 @@
+name: Windows build
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: cargo build --release --locked --no-default-features
+      - uses: actions/upload-artifact@v4
+        with:
+          name: spotifast-windows
+          path: target/release/spotifast.exe
